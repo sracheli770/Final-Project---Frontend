@@ -1,57 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, { useContext } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Cards from './components/Cards';
+import ConnectUser from './components/ConnectUser';
+import DarkMode from './components/DarkMode';
+import Home from './components/Home';
+import Navbar from './components/Navbar';
+import OnlyAdmin from './components/OnlyAdmin';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
+import AuthContext from './context/authContext';
 
 function App() {
+  const { isLoggedIn } = useContext(AuthContext)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <>
+      <Navbar />
+
+      <Routes>
+         <Route path="/" element={<Home />} /> 
+        <Route path="/cards" element={<Cards />} />
+        <Route path="/connect" element={<ConnectUser />} />
+        {!isLoggedIn && <Route path="/signin" element={<SignIn />} />}
+        {!isLoggedIn && <Route path="/signup" element={<SignUp />} />}
+        {isLoggedIn && <Route path="/onlyadmin" element={<OnlyAdmin />}/> }
+      </Routes>
+
+    </>
   );
 }
 
