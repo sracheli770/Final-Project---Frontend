@@ -7,7 +7,7 @@ const Home = () => {
       <h1>Welcome Home</h1>
 
       <video controls>
-        <source src={vv} type="video/mp4" />
+        {/* <source src={vv} type="video/mp4" /> */}
         {/* ניתן להוסיף גם מקורות אחרים של סרטון */}
         {/* <source src="/media/myVideo.webm" type="video/webm" /> */}
         {/* <source src="/media/myVideo.ogg" type="video/ogg" /> */}
@@ -17,6 +17,11 @@ const Home = () => {
 <br /><br />
       <label>הוסף תמונה:</label> <br />
       <input className="mb-2" type="file" accept=".jpg,.jpeg,.png" /* onChange={handleImageChange} */ />
+
+      <br /><br />
+      <iframe src="synthesia://synthesia.app/files/bachChorale.mid#watch" width="600" height="400" title="Synthesia"></iframe>
+
+      {/* synthesia://synthesia.app/files/bachChorale.mid#watch */}
     </div>
   )
 }
